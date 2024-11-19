@@ -8,8 +8,6 @@ const useResponsive = () => {
     setIsMobile(window.innerWidth <= 991);
     if (window.innerWidth > 991) {
       setShowForm(true);
-    } else {
-      setShowForm(false);
     }
   };
 
