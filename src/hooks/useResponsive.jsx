@@ -6,10 +6,17 @@ const useResponsive = () => {
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 991);
-    if (window.innerWidth > 991) {
-      setShowForm(true);
-    } else {
+  };
+
+  const handleFocus = () => {
+    if (isMobile) {
       setShowForm(false);
+    }
+  };
+
+  const handleBlur = () => {
+    if (isMobile) {
+      setShowForm(true);
     }
   };
 
@@ -17,11 +24,19 @@ const useResponsive = () => {
     if (window.innerWidth > 991) {
       setShowForm(true);
     }
+
     window.addEventListener("resize", handleResize);
+
+    window.addEventListener("focusin", handleFocus);
+    window.addEventListener("focusout", handleBlur);
+
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("focusin", handleFocus);
+      window.removeEventListener("focusout", handleBlur);
     };
-  }, []);
+  }, [isMobile]);
+
   return { isMobile, showForm, setShowForm };
 };
 

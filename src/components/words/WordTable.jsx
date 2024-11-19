@@ -1,4 +1,3 @@
-import { IoTrashBinOutline } from "react-icons/io5";
 import useSpeech from "../../hooks/useSpeech";
 import IsLoading from "../common/IsLoading";
 import TableCell from "../TableCell";
@@ -30,10 +29,10 @@ const WordTable = ({
           selectedVoice={selectedVoice}
           setSelectedVoice={setSelectedVoice}
         />
-        <IoTrashBinOutline
+        {/* <IoTrashBinOutline
           className="icon-trash position-relative"
           onClick={handleDeleteAll}
-        />
+        /> */}
       </div>
       {/* table header  */}
       <div className="table-header mt-2">
