@@ -8,7 +8,20 @@ const useSpeech = () => {
     if (typeof speechSynthesis !== "undefined") {
       const loadVoices = () => {
         const availableVoices = speechSynthesis.getVoices();
-        if (availableVoices.length > 0) {
+
+        // فلترة الأصوات الإنجليزية فقط (مثل en-US و en-GB)
+        const englishVoices = availableVoices.filter(
+          (voice) => voice.lang === "en-US" || voice.lang === "en-GB"
+        );
+
+        // إذا كان هناك أكثر من 4 أصوات إنجليزية، قم بتحديد 4 فقط
+        const limitedEnglishVoices = englishVoices.slice(0, 4);
+
+        if (limitedEnglishVoices.length > 0) {
+          setVoices(limitedEnglishVoices);
+          setSelectedVoice(limitedEnglishVoices[0]); // اختيار أول صوت افتراضي
+        } else {
+          // في حال لم تجد أصوات إنجليزية، اختر الصوت الأول المتاح
           setVoices(availableVoices);
           setSelectedVoice(availableVoices[0]);
         }
@@ -16,13 +29,8 @@ const useSpeech = () => {
 
       loadVoices();
       speechSynthesis.onvoiceschanged = loadVoices;
-
-      if (!speechSynthesis.getVoices().length) {
-        setVoices([{ name: "Default Voice", lang: "en-US" }]);
-        setSelectedVoice({ name: "Default Voice", lang: "en-US" });
-      }
     } else {
-      console.warn("speechSynthesis is not supported in this environment."); // تحذير إذا كانت غير مدعومة
+      console.warn("speechSynthesis is not supported in this environment.");
     }
   }, []);
 

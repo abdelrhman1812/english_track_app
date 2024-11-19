@@ -8,7 +8,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? "active-link" : "")}
+            className={({ isActive }) => (isActive ? "active" : "")}
           >
             Words
           </NavLink>
@@ -16,7 +16,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/sentences"
-            className={({ isActive }) => (isActive ? "active-link" : "")}
+            className={({ isActive }) => (isActive ? "active" : "")}
           >
             Sentences
           </NavLink>
@@ -24,7 +24,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/notes"
-            className={({ isActive }) => (isActive ? "active-link" : "")}
+            className={({ isActive }) => (isActive ? "active" : "")}
           >
             Notes
           </NavLink>
@@ -32,7 +32,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/topics"
-            className={({ isActive }) => (isActive ? "active-link" : "")}
+            className={({ isActive }) => (isActive ? "active" : "")}
           >
             Topics
           </NavLink>
