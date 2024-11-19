@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useResponsive = () => {
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
-  const inputRef = useRef(null);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 991);
@@ -23,14 +22,7 @@ const useResponsive = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    if (showForm && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [showForm]);
-
-  return { isMobile, showForm, setShowForm, inputRef };
+  return { isMobile, showForm, setShowForm };
 };
 
 export default useResponsive;
